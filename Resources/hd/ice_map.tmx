@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="14" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="ice_ground" tilewidth="64" tileheight="64">
+  <image source="ice_ground.png" width="1282" height="514"/>
+ </tileset>
+ <layer name="タイル・レイヤー1" width="100" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt1MtOwkAUxvF5DAQTXwDFhQ9QUBGsbqpQRC664eYd9P35m9BkWqeXhcmE6fmS36YnZzrJzBylJBKJRCKR7HsqOEAVNRza3U7pU8cxTtDAqd3tlD4emmjhHBdWdyO5Rw99hBgomWE2s8ASK7zgVckMs5kAdyr+Tjz1d4Zdoo0rdNDFNfyc2i3OMph6bnZ9aWtGdRdjOg/TDHvAEI8YYYwJpjm1ZxxlMPU87frS1ozqLmaGuYrPLdMMe8M7PvCJL6yxKVDzNb/3Wj8PU883fjLWjOouxvQ+9G/BP9DvePK9JP8dFthT9M3FbAFbUUWE
+  </data>
+ </layer>
+ <objectgroup name="collision">
+  <object type="rect" x="0" y="704.357" width="1595.2" height="194.043"/>
+  <object type="rect" x="1598.39" y="833.076" width="254.977" height="63.8307"/>
+  <object type="rect" x="2048.19" y="702.554" width="1789.58" height="188.63"/>
+  <object type="tri" x="6.18047" y="704.574">
+   <polygon points="0,0 631.953,-1.54512 -6.18047,-386.279"/>
+  </object>
+  <object x="2050.37" y="699.938">
+   <polygon points="0,0 701.483,-633.498 703.028,1.54512"/>
+  </object>
+  <object x="5121.74" y="578.812" width="636.48" height="311.833"/>
+ </objectgroup>
+ <objectgroup color="#04f900" name="tricks">
+  <object type="jump" x="1410.69" y="641.224" width="182.324" height="60.2596"/>
+  <object type="jump" x="3583.94" y="640.752" width="130.286" height="61.9393"/>
+ </objectgroup>
+ <objectgroup color="#ffdb00" name="warning">
+  <object type="yellow" x="400" y="254.165" width="433.575" height="448.526"/>
+ </objectgroup>
+</map>
