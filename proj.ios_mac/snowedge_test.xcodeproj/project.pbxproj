@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04AA8F2C1938AEA3005415EC /* BeeTiledMapHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04AA8F2A1938AEA3005415EC /* BeeTiledMapHelper.cpp */; };
 		1AC6FB1F180E996B004C840B /* libbox2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAFF180E9839004C840B /* libbox2d Mac.a */; };
 		1AC6FB20180E996B004C840B /* libchipmunk Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAFD180E9839004C840B /* libchipmunk Mac.a */; };
 		1AC6FB21180E996B004C840B /* libcocos2dx Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2dx Mac.a */; };
@@ -221,6 +222,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04AA8F291938AE6B005415EC /* Bee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bee.h; sourceTree = "<group>"; };
+		04AA8F2A1938AEA3005415EC /* BeeTiledMapHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeeTiledMapHelper.cpp; sourceTree = "<group>"; };
+		04AA8F2B1938AEA3005415EC /* BeeTiledMapHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeTiledMapHelper.h; sourceTree = "<group>"; };
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = ../Classes/AppDelegate.cpp; sourceTree = "<group>"; };
@@ -333,6 +337,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04AA8F261938AE5B005415EC /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				04AA8F2A1938AEA3005415EC /* BeeTiledMapHelper.cpp */,
+				04AA8F2B1938AEA3005415EC /* BeeTiledMapHelper.h */,
+				04AA8F291938AE6B005415EC /* Bee.h */,
+			);
+			name = helper;
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +365,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				04AA8F261938AE5B005415EC /* helper */,
 				379D3A6C19342AEF00A9DB56 /* GLES-Render.cpp */,
 				379D3A6D19342AEF00A9DB56 /* GLES-Render.h */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
@@ -699,6 +714,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				379D3A751934326300A9DB56 /* LevelSelectionScene.cpp in Sources */,
+				04AA8F2C1938AEA3005415EC /* BeeTiledMapHelper.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
 				379D3A6E19342AEF00A9DB56 /* GLES-Render.cpp in Sources */,
