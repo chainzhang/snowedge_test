@@ -26,6 +26,8 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		37857042193C58E00013C87C /* newMainGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37857040193C58E00013C87C /* newMainGameScene.cpp */; };
+		37857046193C5E140013C87C /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37857045193C5E140013C87C /* ground.png */; };
 		379A56E5193429DC0070A199 /* GameMainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379A56E3193429DC0070A199 /* GameMainScene.cpp */; };
 		379D3A6E19342AEF00A9DB56 /* GLES-Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379D3A6C19342AEF00A9DB56 /* GLES-Render.cpp */; };
 		379D3A721934308000A9DB56 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 379D3A711934308000A9DB56 /* star.png */; };
@@ -238,6 +240,9 @@
 		1D6058910D05DD3D006BFB54 /* snowedge_test iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "snowedge_test iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		37857040193C58E00013C87C /* newMainGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = newMainGameScene.cpp; path = ../Classes/newMainGameScene.cpp; sourceTree = "<group>"; };
+		37857041193C58E00013C87C /* newMainGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newMainGameScene.h; path = ../Classes/newMainGameScene.h; sourceTree = "<group>"; };
+		37857045193C5E140013C87C /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ground.png; path = hd/ground.png; sourceTree = "<group>"; };
 		379A56E3193429DC0070A199 /* GameMainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameMainScene.cpp; path = ../Classes/GameMainScene.cpp; sourceTree = "<group>"; };
 		379A56E4193429DC0070A199 /* GameMainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameMainScene.h; path = ../Classes/GameMainScene.h; sourceTree = "<group>"; };
 		379D3A6C19342AEF00A9DB56 /* GLES-Render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "GLES-Render.cpp"; path = "../Classes/GLES-Render.cpp"; sourceTree = "<group>"; };
@@ -376,6 +381,8 @@
 				379A56E4193429DC0070A199 /* GameMainScene.h */,
 				379D3A731934326300A9DB56 /* LevelSelectionScene.cpp */,
 				379D3A741934326300A9DB56 /* LevelSelectionScene.h */,
+				37857040193C58E00013C87C /* newMainGameScene.cpp */,
+				37857041193C58E00013C87C /* newMainGameScene.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -491,6 +498,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37857045193C5E140013C87C /* ground.png */,
 				379D3A76193448F300A9DB56 /* ice_ground.png */,
 				379D3A77193448F300A9DB56 /* ice_map.tmx */,
 				379D3A711934308000A9DB56 /* star.png */,
@@ -672,6 +680,7 @@
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
+				37857046193C5E140013C87C /* ground.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
@@ -711,6 +720,7 @@
 			files = (
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				379A56E5193429DC0070A199 /* GameMainScene.cpp in Sources */,
+				37857042193C58E00013C87C /* newMainGameScene.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				379D3A751934326300A9DB56 /* LevelSelectionScene.cpp in Sources */,
