@@ -70,10 +70,11 @@ bool GameMain::init()
     player_fixture_def.shape = &circle;
     player_fixture_def.density = 4;
     player_fixture_def.restitution = 0;
-    player_fixture_def.friction = 0.7;
+    player_fixture_def.friction = 0.1;
     
     _player_body->CreateFixture(&player_fixture_def);
     _player_body->SetUserData(_player);
+    _player_body->SetFixedRotation(true);
     
     this->addChild(_player);
     
