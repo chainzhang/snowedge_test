@@ -8,6 +8,15 @@
 
 #include "Player.h"
 
+Player::Player():
+_type(Config::PLAYER)
+{
+}
+
+Player::~Player()
+{
+}
+
 Player* Player::createPlayer( const std::string &filename )
 {
     auto player = new Player();

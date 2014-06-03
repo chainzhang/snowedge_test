@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		045B79AD193E22BC00CEE368 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 045B79AB193E22BC00CEE368 /* Ground.cpp */; };
 		04AA8F2C1938AEA3005415EC /* BeeTiledMapHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04AA8F2A1938AEA3005415EC /* BeeTiledMapHelper.cpp */; };
 		1AC6FB1F180E996B004C840B /* libbox2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAFF180E9839004C840B /* libbox2d Mac.a */; };
 		1AC6FB20180E996B004C840B /* libchipmunk Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAFD180E9839004C840B /* libchipmunk Mac.a */; };
@@ -226,6 +227,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		045B79AB193E22BC00CEE368 /* Ground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Ground.cpp; path = ../Classes/Ground.cpp; sourceTree = "<group>"; };
+		045B79AC193E22BC00CEE368 /* Ground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ground.h; path = ../Classes/Ground.h; sourceTree = "<group>"; };
+		045B79B0193E253500CEE368 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../Classes/Config.h; sourceTree = "<group>"; };
 		04AA8F291938AE6B005415EC /* Bee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bee.h; sourceTree = "<group>"; };
 		04AA8F2A1938AEA3005415EC /* BeeTiledMapHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeeTiledMapHelper.cpp; sourceTree = "<group>"; };
 		04AA8F2B1938AEA3005415EC /* BeeTiledMapHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeTiledMapHelper.h; sourceTree = "<group>"; };
@@ -393,6 +397,9 @@
 				37857041193C58E00013C87C /* newMainGameScene.h */,
 				37857048193C66380013C87C /* Player.cpp */,
 				37857049193C66380013C87C /* Player.h */,
+				045B79AB193E22BC00CEE368 /* Ground.cpp */,
+				045B79AC193E22BC00CEE368 /* Ground.h */,
+				045B79B0193E253500CEE368 /* Config.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -729,6 +736,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				045B79AD193E22BC00CEE368 /* Ground.cpp in Sources */,
 				379A56E5193429DC0070A199 /* GameMainScene.cpp in Sources */,
 				37857042193C58E00013C87C /* newMainGameScene.cpp in Sources */,
 				3778A9D6193C86F40001EED1 /* CustomFollow.cpp in Sources */,

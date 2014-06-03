@@ -6,20 +6,15 @@
 //
 //
 
+#include "Config.h"
 #include "newMainGameScene.h"
 #include "Player.h"
+#include "Ground.h"
 #include "CustomFollow.h"
 
 #define GRAVITY -49.0f
 #define PTM_RATIO 32
 #define PI 3.1415926
-
-namespace Tags{
-    enum SpriteTag {
-        TAG_GROUND = 1000
-    };
-}
-
 
 NewMainGame::NewMainGame():
 _last_ground_tail_pos(Vec2(0, 0)),
@@ -61,6 +56,7 @@ bool NewMainGame::init()
     
     //init player
     _player = Player::createPlayer("star.png");
+    _player->setTag(Tags::TAG_PLAYER);
     
     b2BodyDef player_body_def;
     player_body_def.type = b2_dynamicBody;
@@ -129,7 +125,7 @@ void NewMainGame::update(float delta)
     
     for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
     {
-        if (b->GetUserData() != NULL) {
+        if (b->GetType() == b2_dynamicBody && b->GetUserData() != NULL) {
             Sprite* myActor = (Sprite*)b->GetUserData();
             myActor->setPosition( Point( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO) );
             myActor->setRotation( -1 * CC_RADIANS_TO_DEGREES(b->GetAngle()) );
@@ -147,6 +143,7 @@ void NewMainGame::genGround()
     auto ground = Sprite::create("ground.png");
     ground->setAnchorPoint(Point::ANCHOR_TOP_LEFT);
     ground->setPosition(_last_ground_tail_pos);
+    ground->setTag(Tags::TAG_GROUND);
     this->addChild(ground);
     
     b2BodyDef ground_body_def;
@@ -154,6 +151,7 @@ void NewMainGame::genGround()
     
     b2Body *ground_body;
     ground_body = _world->CreateBody(&ground_body_def);
+    ground_body->SetUserData(ground);
     
     b2Vec2 polygon_points[] = {b2Vec2(ground->getPosition().x/PTM_RATIO, ground->getPosition().y/PTM_RATIO),
                                b2Vec2((ground->getPosition().x + ground->getContentSize().width)/PTM_RATIO, (ground->getPosition().y - ground->getContentSize().width*tan(PI/12))/PTM_RATIO),
@@ -197,18 +195,21 @@ void NewMainGame::initPhyWorld()
 void NewMainGame::BeginContact(b2Contact *contact)
 {
     CCLOG("contacting");
-    void* the_item = contact->GetFixtureA()->GetBody()->GetUserData();
-    if (the_item)
+    void* the_item_a = contact->GetFixtureA()->GetBody()->GetUserData();
+    void* the_item_b = contact->GetFixtureB()->GetBody()->GetUserData();
+    if (the_item_a && the_item_b)
     {
-        CCLOG("userdata_OK");
-        static_cast<Player*>(the_item)->setOnGround(true);
-    }
-    
-    the_item = contact->GetFixtureB()->GetBody()->GetUserData();
-    if (the_item)
-    {
-        CCLOG("userdata_OK");
-        static_cast<Player*>(the_item)->setOnGround(true);
+        if ((static_cast<Sprite*>(the_item_a)->getTag() == Tags::TAG_PLAYER &&
+             static_cast<Sprite*>(the_item_b)->getTag() == Tags::TAG_GROUND))
+        {
+            static_cast<Player*>(the_item_a)->setOnGround(true);
+        }
+        else if ((static_cast<Sprite*>(the_item_a)->getTag() == Tags::TAG_GROUND &&
+                  static_cast<Sprite*>(the_item_b)->getTag() == Tags::TAG_PLAYER))
+        {
+            static_cast<Player*>(the_item_b)->setOnGround(true);
+        }
+
     }
 }
 
