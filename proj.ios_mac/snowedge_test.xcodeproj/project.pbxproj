@@ -26,8 +26,10 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		3778A9D6193C86F40001EED1 /* CustomFollow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3778A9D4193C86F40001EED1 /* CustomFollow.cpp */; };
 		37857042193C58E00013C87C /* newMainGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37857040193C58E00013C87C /* newMainGameScene.cpp */; };
 		37857046193C5E140013C87C /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37857045193C5E140013C87C /* ground.png */; };
+		3785704A193C66380013C87C /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37857048193C66380013C87C /* Player.cpp */; };
 		379A56E5193429DC0070A199 /* GameMainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379A56E3193429DC0070A199 /* GameMainScene.cpp */; };
 		379D3A6E19342AEF00A9DB56 /* GLES-Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379D3A6C19342AEF00A9DB56 /* GLES-Render.cpp */; };
 		379D3A721934308000A9DB56 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 379D3A711934308000A9DB56 /* star.png */; };
@@ -240,9 +242,13 @@
 		1D6058910D05DD3D006BFB54 /* snowedge_test iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "snowedge_test iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3778A9D4193C86F40001EED1 /* CustomFollow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CustomFollow.cpp; path = ../Classes/CustomFollow.cpp; sourceTree = "<group>"; };
+		3778A9D5193C86F40001EED1 /* CustomFollow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomFollow.h; path = ../Classes/CustomFollow.h; sourceTree = "<group>"; };
 		37857040193C58E00013C87C /* newMainGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = newMainGameScene.cpp; path = ../Classes/newMainGameScene.cpp; sourceTree = "<group>"; };
 		37857041193C58E00013C87C /* newMainGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newMainGameScene.h; path = ../Classes/newMainGameScene.h; sourceTree = "<group>"; };
 		37857045193C5E140013C87C /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ground.png; path = hd/ground.png; sourceTree = "<group>"; };
+		37857048193C66380013C87C /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = ../Classes/Player.cpp; sourceTree = "<group>"; };
+		37857049193C66380013C87C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ../Classes/Player.h; sourceTree = "<group>"; };
 		379A56E3193429DC0070A199 /* GameMainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameMainScene.cpp; path = ../Classes/GameMainScene.cpp; sourceTree = "<group>"; };
 		379A56E4193429DC0070A199 /* GameMainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameMainScene.h; path = ../Classes/GameMainScene.h; sourceTree = "<group>"; };
 		379D3A6C19342AEF00A9DB56 /* GLES-Render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "GLES-Render.cpp"; path = "../Classes/GLES-Render.cpp"; sourceTree = "<group>"; };
@@ -370,6 +376,8 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3778A9D4193C86F40001EED1 /* CustomFollow.cpp */,
+				3778A9D5193C86F40001EED1 /* CustomFollow.h */,
 				04AA8F261938AE5B005415EC /* helper */,
 				379D3A6C19342AEF00A9DB56 /* GLES-Render.cpp */,
 				379D3A6D19342AEF00A9DB56 /* GLES-Render.h */,
@@ -383,6 +391,8 @@
 				379D3A741934326300A9DB56 /* LevelSelectionScene.h */,
 				37857040193C58E00013C87C /* newMainGameScene.cpp */,
 				37857041193C58E00013C87C /* newMainGameScene.h */,
+				37857048193C66380013C87C /* Player.cpp */,
+				37857049193C66380013C87C /* Player.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -721,8 +731,10 @@
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				379A56E5193429DC0070A199 /* GameMainScene.cpp in Sources */,
 				37857042193C58E00013C87C /* newMainGameScene.cpp in Sources */,
+				3778A9D6193C86F40001EED1 /* CustomFollow.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
+				3785704A193C66380013C87C /* Player.cpp in Sources */,
 				379D3A751934326300A9DB56 /* LevelSelectionScene.cpp in Sources */,
 				04AA8F2C1938AEA3005415EC /* BeeTiledMapHelper.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,

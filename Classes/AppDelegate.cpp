@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "GameMainScene.h"
+#include "newMainGameScene.h"
 
 USING_NS_CC;
 
@@ -20,6 +20,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 
+    glview->setDesignResolutionSize(1136.0f, 640.f, ResolutionPolicy::FIXED_HEIGHT);
+    
+    Director::getInstance()->setContentScaleFactor(1.0f);
+    
     // turn on display FPS
     director->setDisplayStats(true);
 
@@ -27,7 +31,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    auto scene = GameMain::createScene(1);
+    auto scene = NewMainGame::createScene();
 
     // run
     director->runWithScene(scene);

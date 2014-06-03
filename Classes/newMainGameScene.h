@@ -19,7 +19,9 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
-class NewMainGame : public cocos2d::Layer
+class Player;
+
+class NewMainGame : public cocos2d::Layer, public b2ContactListener
 {
 public:
     
@@ -29,8 +31,9 @@ public:
     static Scene* createScene();
     void initPhyWorld();
     bool init();
+    void initUserControl();
     void update(float delta);
-    void genGround(Vec2 pos);
+    void genGround();
     
 protected:
     virtual void draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated) override;
@@ -38,14 +41,29 @@ protected:
     void onDraw();
     CustomCommand _customCommand;
     
+    virtual void BeginContact(b2Contact* contact);
+    virtual void EndContact(b2Contact* contact);
+    
+    CREATE_FUNC(NewMainGame);
+    
 private:
     b2World* _world;
     GLESDebugDraw* _debugDraw;
     
     Size _visibleSize;
     
-    std::list<Sprite*>_grounds;
+    std::list<b2Body*>_grounds;
     Vec2 _last_ground_tail_pos;
+    
+    
+    
+    Player* _player;
+    b2Body* _player_body;
+    int _ground_passed;
+    bool _jump_available;
+    
+    EventListenerTouchOneByOne *_one_by_one_listener;
+    EventListenerTouchAllAtOnce *_all_at_once_listener;
 };
 
 #endif
