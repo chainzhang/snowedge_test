@@ -45,12 +45,13 @@ bool GameOver::init()
     
     this->addChild(gameover);
     
-    listener->onTouchBegan = [this, &listener](Touch *touch, Event *event){
+    listener->onTouchBegan = [this](Touch *touch, Event *event){
         this->reChallenge();
         
-        listener->setSwallowTouches(false);
         return true;
     };
+    listener->onTouchMoved = NULL;
+    listener->onTouchEnded = NULL;
     
     _eventDispatcher->addEventListenerWithFixedPriority(listener, 9999);
     
@@ -59,5 +60,6 @@ bool GameOver::init()
 
 void GameOver::reChallenge()
 {
+    _eventDispatcher->removeAllEventListeners();
     Director::getInstance()->replaceScene(TransitionCrossFade::create(1.0f, NewMainGame::createScene()));
 }

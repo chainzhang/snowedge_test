@@ -12,7 +12,7 @@
 #include "Player.h"
 #include "Ground.h"
 
-#define GRAVITY -49.0f
+#define GRAVITY -72.0f
 #define PTM_RATIO 32
 #define PI 3.1415926
 
@@ -23,6 +23,9 @@ _ground_passed(0),
 _jump_available(true),
 _map_size(20),
 _map_now(0),
+_camera_moving_factor(1.0f),
+_camera_offset(Vec2(0,0)),
+_camera_current_offset(Vec2(0,0)),
 _game_state(GameState::NORMAL)
 {
     initPhyWorld();
@@ -76,9 +79,10 @@ bool NewMainGame::init()
     _player = Player::createPlayer("star.png");
     _player->setTag(Tags::TAG_PLAYER);
     
-    _camera = Sprite::create();
+    _camera = Node::create();
     _camera->setPosition(_visibleSize.width/2, _visibleSize.height/2);
     _camera->setTag(Tags::TAG_CAMERA);
+    
     
     b2BodyDef player_body_def;
     player_body_def.type = b2_dynamicBody;
@@ -122,16 +126,31 @@ void NewMainGame::initUserControl()
         
         CCLOG("on ground:%i", _player->getOnGround());
         
+        for (b2ContactEdge* ce = _player_body->GetContactList(); ce;ce = ce->next)
+        {
+            b2Contact* c = ce->contact;
+            if (c->IsTouching()) {
+                _player->setOnGround(true);
+            } else {
+                _player->setOnGround(false);
+            }
+        }
+        
         if (_player->getOnGround())
         {
             CCLOG("Jump");
-            _player_body->ApplyLinearImpulse(b2Vec2(0,16*_player_body->GetMass()*(-GRAVITY)/PTM_RATIO), _player_body->GetWorldCenter(), true);
+            _camera_offset = Vec2(-_player_body->GetLinearVelocity().x*PTM_RATIO/10, 0);
+            _player_body->ApplyLinearImpulse(b2Vec2(0,14*_player_body->GetMass()*(-GRAVITY)/PTM_RATIO), _player_body->GetWorldCenter(), true);
             _player->setOnGround(false);
             return true;
         }
         
         return false;
     };
+    
+    _one_by_one_listener->onTouchMoved = NULL;
+    _one_by_one_listener->onTouchEnded = NULL;
+    
     _eventDispatcher->addEventListenerWithFixedPriority(_one_by_one_listener, 8000);
     
     
@@ -175,14 +194,21 @@ void NewMainGame::update(float delta)
     
     Vec2 camera_pos = (_player->getPosition()-player_current_pos);
     camera_pos.y = -camera_pos.x*tan(PI/12);
-    _camera->setPosition(_camera->getPosition() + camera_pos);
+    
+    if (_camera_offset != _camera_current_offset)
+    {
+        _camera->setPosition(_camera->getPosition() + camera_pos + (_camera_offset - _camera_current_offset)*delta/0.2f);
+        _camera_current_offset += (_camera_offset - _camera_current_offset)*delta/0.2f;
+    }
+    else
+    {
+        _camera->setPosition(_camera->getPosition() + camera_pos);
+    }
+        
     
     if (_camera->getPosition().y - _player->getPosition().y > _visibleSize.height) {
         _game_state = GameState::GAMEOVER;
     }
-    
-    
-    
     
     CCLOG("SPEED::::::::%f", _player_body->GetLinearVelocity().x);
 }
@@ -253,6 +279,7 @@ void NewMainGame::initPhyWorld()
 
 void NewMainGame::BeginContact(b2Contact *contact)
 {
+    
     CCLOG("contacting");
     void* the_item_a = contact->GetFixtureA()->GetBody()->GetUserData();
     void* the_item_b = contact->GetFixtureB()->GetBody()->GetUserData();
@@ -261,15 +288,16 @@ void NewMainGame::BeginContact(b2Contact *contact)
         if ((static_cast<Sprite*>(the_item_a)->getTag() == Tags::TAG_PLAYER &&
              static_cast<Sprite*>(the_item_b)->getTag() == Tags::TAG_GROUND))
         {
-            static_cast<Player*>(the_item_a)->setOnGround(true);
+            _camera_offset = Vec2(0,0);
         }
         else if ((static_cast<Sprite*>(the_item_a)->getTag() == Tags::TAG_GROUND &&
                   static_cast<Sprite*>(the_item_b)->getTag() == Tags::TAG_PLAYER))
         {
-            static_cast<Player*>(the_item_b)->setOnGround(true);
+            _camera_offset = Vec2(0,0);
         }
 
     }
+    
 }
 
 void NewMainGame::EndContact(b2Contact *contact)
@@ -279,6 +307,7 @@ void NewMainGame::EndContact(b2Contact *contact)
 
 void NewMainGame::GameOver()
 {
+    _eventDispatcher->removeAllEventListeners();
     Director::getInstance()->replaceScene(TransitionCrossFade::create(1.0f, GameOver::createScene()));
 }
 

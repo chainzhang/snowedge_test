@@ -53,7 +53,12 @@ private:
     
     b2World* _world;
     GLESDebugDraw* _debugDraw;
-    Sprite *_camera;
+    Node *_camera;
+    float _camera_moving_factor;
+    Vec2 _camera_offset;
+    Vec2 _camera_current_offset;
+    
+    
     int *_map;
     int _map_size;
     int _map_now;
