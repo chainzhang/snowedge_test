@@ -19,10 +19,18 @@ namespace Config {
 namespace Tags{
     enum SpriteTag {
         TAG_PLAYER,
-        TAG_GROUND
+        TAG_GROUND,
+        TAG_CAMERA
     };
 }
 
+namespace GameState {
+    enum state{
+        NORMAL,
+        PAUSE,
+        GAMEOVER
+    };
+}
 
 
 #endif

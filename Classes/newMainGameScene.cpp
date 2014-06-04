@@ -8,26 +8,32 @@
 
 #include "Config.h"
 #include "newMainGameScene.h"
+#include "GameOverScene.h"
 #include "Player.h"
 #include "Ground.h"
-#include "CustomFollow.h"
 
 #define GRAVITY -49.0f
 #define PTM_RATIO 32
 #define PI 3.1415926
 
+
 NewMainGame::NewMainGame():
 _last_ground_tail_pos(Vec2(0, 0)),
 _ground_passed(0),
-_jump_available(true)
+_jump_available(true),
+_map_size(20),
+_map_now(0),
+_game_state(GameState::NORMAL)
 {
     initPhyWorld();
+    _map = new int[_map_size];
 }
 
 NewMainGame::~NewMainGame()
 {
     delete _world;
     delete _debugDraw;
+    delete [] _map;
 }
 
 Scene* NewMainGame::createScene()
@@ -48,6 +54,18 @@ bool NewMainGame::init()
     _visibleSize = Director::getInstance()->getVisibleSize();
     _last_ground_tail_pos = Vec2(0, _visibleSize.height/2.5);
     
+    for (int i = 0; i < _map_size; i++)
+    {
+        if (i == 10 || i == 12 || i == 13 || i ==4 || i == 6)
+        {
+            _map[i] = 0;
+        }
+        else
+        {
+            _map[i] = 1;
+        }
+    }
+    
     //init ground
     for (int i = 0; i < 3; i++)
     {
@@ -57,6 +75,10 @@ bool NewMainGame::init()
     //init player
     _player = Player::createPlayer("star.png");
     _player->setTag(Tags::TAG_PLAYER);
+    
+    _camera = Sprite::create();
+    _camera->setPosition(_visibleSize.width/2, _visibleSize.height/2);
+    _camera->setTag(Tags::TAG_CAMERA);
     
     b2BodyDef player_body_def;
     player_body_def.type = b2_dynamicBody;
@@ -70,9 +92,9 @@ bool NewMainGame::init()
     
     b2FixtureDef player_fixture_def;
     player_fixture_def.shape = &circle;
-    player_fixture_def.density = 3;
+    player_fixture_def.density = 1000;
     player_fixture_def.restitution = 0;
-    player_fixture_def.friction = 0.15;
+    player_fixture_def.friction = 0;
     
     _player_body->CreateFixture(&player_fixture_def);
     _player_body->SetFixedRotation(true);
@@ -80,9 +102,9 @@ bool NewMainGame::init()
     
     _player->setPosition(Vec2(_visibleSize.width/8, _visibleSize.height/1.2));
     this->addChild(_player);
+    this->addChild(_camera);
     
-    
-    this->runAction(CustomFollow::create(_player,Point(-300, -80)));
+    this->runAction(Follow::create(_camera));
     
     this->scheduleUpdate();
     
@@ -121,13 +143,22 @@ void NewMainGame::initUserControl()
 
 void NewMainGame::update(float delta)
 {
+    if (_game_state == GameState::GAMEOVER){
+        this->unscheduleAllSelectors();
+        this->GameOver();
+    }
+    
+    
+    
+    Vec2 player_current_pos = _player->getPosition();
+    
     _world->Step(delta, 8 , 1);
     
     for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
     {
-        if (b->GetType() == b2_dynamicBody && b->GetUserData() != NULL) {
+        if (b->GetUserData() != NULL && b->GetType() == b2_dynamicBody) {
             Sprite* myActor = (Sprite*)b->GetUserData();
-            myActor->setPosition( Point( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO) );
+            myActor->setPosition( Vec2( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO) );
             myActor->setRotation( -1 * CC_RADIANS_TO_DEGREES(b->GetAngle()) );
         }
     }
@@ -136,10 +167,30 @@ void NewMainGame::update(float delta)
         this->genGround();
         _ground_passed++;
     }
+    
+    if (_player_body->GetLinearVelocity().x > 80)
+    {
+        _player_body->SetLinearVelocity(b2Vec2(80, _player_body->GetLinearVelocity().y));
+    }
+    
+    Vec2 camera_pos = (_player->getPosition()-player_current_pos);
+    camera_pos.y = -camera_pos.x*tan(PI/12);
+    _camera->setPosition(_camera->getPosition() + camera_pos);
+    
+    if (_camera->getPosition().y - _player->getPosition().y > _visibleSize.height) {
+        _game_state = GameState::GAMEOVER;
+    }
+    
+    
+    
+    
+    CCLOG("SPEED::::::::%f", _player_body->GetLinearVelocity().x);
 }
 
 void NewMainGame::genGround()
 {
+    if (_map[_map_now] == 1) {
+    
     auto ground = Sprite::create("ground.png");
     ground->setAnchorPoint(Point::ANCHOR_TOP_LEFT);
     ground->setPosition(_last_ground_tail_pos);
@@ -153,11 +204,11 @@ void NewMainGame::genGround()
     ground_body = _world->CreateBody(&ground_body_def);
     ground_body->SetUserData(ground);
     
-    b2Vec2 polygon_points[] = {b2Vec2(ground->getPosition().x/PTM_RATIO, ground->getPosition().y/PTM_RATIO),
+    b2Vec2 polygon_points[] = {b2Vec2(ground->getPosition().x/PTM_RATIO, ground->getPosition().y/PTM_RATIO-0.01f),
                                b2Vec2((ground->getPosition().x + ground->getContentSize().width)/PTM_RATIO, (ground->getPosition().y - ground->getContentSize().width*tan(PI/12))/PTM_RATIO),
                                b2Vec2((ground->getPosition().x + ground->getContentSize().width)/PTM_RATIO, (ground->getPosition().y - ground->getContentSize().height)/PTM_RATIO),
                                b2Vec2(ground->getPosition().x/PTM_RATIO, (ground->getPosition().y - ground->getContentSize().width*tan(PI/12))/PTM_RATIO)
-    };
+                               };
     
     b2PolygonShape ground_shape;
     ground_shape.Set(polygon_points, 4);
@@ -165,10 +216,18 @@ void NewMainGame::genGround()
     ground_body->CreateFixture(&ground_shape, 0);
     _grounds.push_back(ground_body);
     _last_ground_tail_pos += Vec2(ground->getContentSize().width, -tan(PI/12)*ground->getContentSize().width);
+    } else {
+        _last_ground_tail_pos += Vec2(1136.0f, -tan(PI/12)*1136.0f);
+    }
     if (_grounds.size() > 3)
     {
         _grounds.front()->GetWorld()->DestroyBody(_grounds.front());
         _grounds.pop_front();
+    }
+    _map_now++;
+    if (_map_now > _map_size)
+    {
+        _map_now = 0;
     }
 }
 
@@ -216,6 +275,17 @@ void NewMainGame::BeginContact(b2Contact *contact)
 void NewMainGame::EndContact(b2Contact *contact)
 {
 }
+
+
+void NewMainGame::GameOver()
+{
+    Director::getInstance()->replaceScene(TransitionCrossFade::create(1.0f, GameOver::createScene()));
+}
+
+
+
+
+
 
 
 void NewMainGame::draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated)

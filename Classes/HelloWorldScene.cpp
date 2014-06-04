@@ -27,8 +27,19 @@ bool HelloWorld::init()
         return false;
     }
     
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     return true;
+}
+
+void HelloWorld::BeginContact(b2Contact *contact)
+{
+    b2Body *body = contact->GetFixtureA()->GetBody();
+}
+
+void HelloWorld::EndContact(b2Contact *contact)
+{
+    
 }

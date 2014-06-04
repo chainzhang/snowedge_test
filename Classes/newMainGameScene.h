@@ -34,6 +34,7 @@ public:
     void initUserControl();
     void update(float delta);
     void genGround();
+    void GameOver();
     
 protected:
     virtual void draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated) override;
@@ -47,8 +48,15 @@ protected:
     CREATE_FUNC(NewMainGame);
     
 private:
+    int _game_state;
+    
+    
     b2World* _world;
     GLESDebugDraw* _debugDraw;
+    Sprite *_camera;
+    int *_map;
+    int _map_size;
+    int _map_now;
     
     Size _visibleSize;
     
