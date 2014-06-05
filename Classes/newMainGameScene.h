@@ -45,6 +45,8 @@ protected:
     virtual void BeginContact(b2Contact* contact);
     virtual void EndContact(b2Contact* contact);
     
+    Vec2 B2Vec2toVec2(b2Vec2 b2vec2);
+    
     CREATE_FUNC(NewMainGame);
     
 private:
@@ -65,6 +67,7 @@ private:
     
     Size _visibleSize;
     
+    Texture2D *_ground_texture;
     std::list<b2Body*>_grounds;
     Vec2 _last_ground_tail_pos;
     

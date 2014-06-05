@@ -69,6 +69,9 @@ bool NewMainGame::init()
         }
     }
     
+    
+    _ground_texture = TextureCache::getInstance()->addImage("ground.png");
+    
     //init ground
     for (int i = 0; i < 3; i++)
     {
@@ -217,7 +220,7 @@ void NewMainGame::genGround()
 {
     if (_map[_map_now] == 1) {
     
-    auto ground = Sprite::create("ground.png");
+    auto ground = Sprite::createWithTexture(_ground_texture);
     ground->setAnchorPoint(Point::ANCHOR_TOP_LEFT);
     ground->setPosition(_last_ground_tail_pos);
     ground->setTag(Tags::TAG_GROUND);
@@ -345,4 +348,9 @@ void NewMainGame::onDraw()
     kmGLLoadMatrix(&_modelViewMV);
     _world->DrawDebugData();
     kmGLLoadMatrix(&oldMV);
+}
+
+Vec2 NewMainGame::B2Vec2toVec2(b2Vec2 b2vec2)
+{
+    return Vec2(b2vec2.x/PTM_RATIO, b2vec2.y/PTM_RATIO);
 }
