@@ -14,7 +14,6 @@
 class DynamicsLabel : public cocos2d::Label
 {
 public:
-    static 
 };
 
 
