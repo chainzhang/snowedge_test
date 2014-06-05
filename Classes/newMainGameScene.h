@@ -80,6 +80,10 @@ private:
     
     EventListenerTouchOneByOne *_one_by_one_listener;
     EventListenerTouchAllAtOnce *_all_at_once_listener;
+    
+    
+    double _accumulator;
+    double _current_time;
 };
 
 #endif

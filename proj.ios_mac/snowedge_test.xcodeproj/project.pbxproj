@@ -31,7 +31,7 @@
 		37857042193C58E00013C87C /* newMainGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37857040193C58E00013C87C /* newMainGameScene.cpp */; };
 		37857046193C5E140013C87C /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37857045193C5E140013C87C /* ground.png */; };
 		3785704A193C66380013C87C /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37857048193C66380013C87C /* Player.cpp */; };
-		3785D9231940638300DB172C /* DynamicsLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3785D9211940638300DB172C /* DynamicsLabel.cpp */; };
+		3785D9231940638300DB172C /* DynamicsNumberLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3785D9211940638300DB172C /* DynamicsNumberLabel.cpp */; };
 		379D3A6E19342AEF00A9DB56 /* GLES-Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379D3A6C19342AEF00A9DB56 /* GLES-Render.cpp */; };
 		379D3A721934308000A9DB56 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 379D3A711934308000A9DB56 /* star.png */; };
 		379D3A751934326300A9DB56 /* LevelSelectionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379D3A731934326300A9DB56 /* LevelSelectionScene.cpp */; };
@@ -254,8 +254,8 @@
 		37857045193C5E140013C87C /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ground.png; path = hd/ground.png; sourceTree = "<group>"; };
 		37857048193C66380013C87C /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = ../Classes/Player.cpp; sourceTree = "<group>"; };
 		37857049193C66380013C87C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ../Classes/Player.h; sourceTree = "<group>"; };
-		3785D9211940638300DB172C /* DynamicsLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DynamicsLabel.cpp; path = ../Classes/DynamicsLabel.cpp; sourceTree = "<group>"; };
-		3785D9221940638300DB172C /* DynamicsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicsLabel.h; path = ../Classes/DynamicsLabel.h; sourceTree = "<group>"; };
+		3785D9211940638300DB172C /* DynamicsNumberLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DynamicsNumberLabel.cpp; path = ../Classes/DynamicsNumberLabel.cpp; sourceTree = "<group>"; };
+		3785D9221940638300DB172C /* DynamicsNumberLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicsNumberLabel.h; path = ../Classes/DynamicsNumberLabel.h; sourceTree = "<group>"; };
 		379D3A6C19342AEF00A9DB56 /* GLES-Render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "GLES-Render.cpp"; path = "../Classes/GLES-Render.cpp"; sourceTree = "<group>"; };
 		379D3A6D19342AEF00A9DB56 /* GLES-Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GLES-Render.h"; path = "../Classes/GLES-Render.h"; sourceTree = "<group>"; };
 		379D3A711934308000A9DB56 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = hd/star.png; sourceTree = "<group>"; };
@@ -480,8 +480,8 @@
 		3785D9201940637900DB172C /* Object */ = {
 			isa = PBXGroup;
 			children = (
-				3785D9211940638300DB172C /* DynamicsLabel.cpp */,
-				3785D9221940638300DB172C /* DynamicsLabel.h */,
+				3785D9211940638300DB172C /* DynamicsNumberLabel.cpp */,
+				3785D9221940638300DB172C /* DynamicsNumberLabel.h */,
 			);
 			name = Object;
 			sourceTree = "<group>";
@@ -755,7 +755,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3785D9231940638300DB172C /* DynamicsLabel.cpp in Sources */,
+				3785D9231940638300DB172C /* DynamicsNumberLabel.cpp in Sources */,
 				377C6226193F1D270047F005 /* GameOverScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				045B79AD193E22BC00CEE368 /* Ground.cpp in Sources */,

@@ -26,7 +26,9 @@ _map_now(0),
 _camera_moving_factor(1.0f),
 _camera_offset(Vec2(0,0)),
 _camera_current_offset(Vec2(0,0)),
-_game_state(GameState::NORMAL)
+_game_state(GameState::NORMAL),
+_accumulator(0.0f),
+_current_time(0.0f)
 {
     initPhyWorld();
     _map = new int[_map_size];
@@ -170,11 +172,9 @@ void NewMainGame::update(float delta)
         this->GameOver();
     }
     
-    
+    _world->Step(delta, 1, 1);
     
     Vec2 player_current_pos = _player->getPosition();
-    
-    _world->Step(delta, 8 , 1);
     
     for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
     {
