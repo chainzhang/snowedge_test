@@ -32,5 +32,11 @@ namespace GameState {
     };
 }
 
+namespace GameMap{
+    enum Map{
+        NORMAL_GROUND
+    };
+}
+
 
 #endif

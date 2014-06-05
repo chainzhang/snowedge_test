@@ -6,9 +6,16 @@
 //
 //
 
-#ifndef __snowedge_test__DynamicsLabel__
-#define __snowedge_test__DynamicsLabel__
+#ifndef __DYNAMICS_LABEL__
+#define __DYNAMICS_LABEL__
 
-#include <iostream>
+#include "cocos2d.h"
 
-#endif /* defined(__snowedge_test__DynamicsLabel__) */
+class DynamicsLabel : public cocos2d::Label
+{
+public:
+    static 
+};
+
+
+#endif
